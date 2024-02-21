@@ -1,4 +1,4 @@
-# Development Repo for Ethereal Engine Tutorials
+# Development ground for Ethereal Engine tutorials
 This is a meta-project for creating EE Tutorial/Example projects.  
 It contains:
 - Collection of project ideas that could turn into useful tutorials
@@ -22,7 +22,7 @@ ROOT
  ├─ 🗀 published  # Finished tutorial projects are stored as submodules
  │  ├─ 🗀 ...     # A published tutorial submodule ..
  │  └─ 🗀 ...     # A published tutorial submodule ..
- ├─ 🗀 src        # Contains in-development projects that might eventually be published
+ ├─ 🗀 src        # In-Development projects that might eventually be published
  │  ├─ 🗀 ...     # Source code of a Work-in-Progress tutorial project ..
  │  └─ 🗀 ...     # Source code of a Work-in-Progress tutorial project ..
  └─ 🗎 readme.md  # This file
