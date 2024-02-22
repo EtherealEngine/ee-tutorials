@@ -1,0 +1,36 @@
+#!/bin/bash
+# @fileoverview
+# Creates a new project automatically:
+# - Uses the expected folder structure
+# - Avoids having to remember the correct subtree command every time
+# - Squashes the template's history automatically. This simulates creating the project from a GitHub.Template
+
+
+#_______________________________________
+# @section Error check
+#_____________________________
+Prefix="create-tutorial: "
+info(){ echo $Prefix $@; }
+fail(){ info $@; exit; }
+[[ $1 = ""    ]] && fail "The given project name cannot be empty"
+[[ $1 = *" "* ]] && fail "The given project name cannot contain spaces. The name passed was `$1`"
+
+
+#_______________________________________
+# @section Process
+#_____________________________
+# Setup the variables
+name=$1
+branch="dev"
+case $2 in
+  "static") template="git@github.com:EtherealEngine/ee-static-build-template.git" ;;
+         *) template="git@github.com:EtherealEngine/ee-template.git"              ;;
+esac
+#_____________________________
+# Run the command
+[[ $template = *"static"* ]] &&
+  info "Creating a new project from the static-build template." ||
+  info "Creating a new project from the standard template."
+#___________________
+git subtree add --prefix src/$name $template $branch --squash
+

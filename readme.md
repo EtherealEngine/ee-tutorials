@@ -5,6 +5,10 @@ It contains:
 - Already published tutorials _(as submodules)_
 - Source code of Work-in-Progress tutorial projects
 
+> **Important**:  
+> This repository uses git's `subtree` and `submodule` features for managing its contained projects.  
+> Using the provided scripts and instructions is required to respect the repository's workflow.  
+
 ## Cloning the Repository
 The repository **must** be cloned with submodule recursion:
 ```bash
@@ -16,15 +20,24 @@ If you already cloned the repository without recursive submodules
 git submodule update --init --recursive
 ```
 
+## Creating a new project
+This repository provides a script to add new projects based on the engine templates:
+```bash
+./create <project-name>        # Creates a new project based on the standard template
+./create <project-name> static # Creates a new project based on the static build template
+# NOTE: <project-name> is the name of the project without the `ee-tutorial-` prefix
+```
+
 ## Folder structure
 ```md
 ROOT
  ├─ 🗀 published  # Finished tutorial projects are stored as submodules
- │  ├─ 🗀 ...     # A published tutorial submodule ..
- │  └─ 🗀 ...     # A published tutorial submodule ..
+ │  ├─ 🗀 ...     # A published tutorial submodule ..
+ │  └─ 🗀 ...     # A published tutorial submodule ..
  ├─ 🗀 src        # In-Development projects that might eventually be published
- │  ├─ 🗀 ...     # Source code of a Work-in-Progress tutorial project ..
- │  └─ 🗀 ...     # Source code of a Work-in-Progress tutorial project ..
+ │  ├─ 🗀 ...     # Source code of a Work-in-Progress tutorial project ..
+ │  └─ 🗀 ...     # Source code of a Work-in-Progress tutorial project ..
+ ├─ 🗎 create     # Shell script to create new projects from the engine templates
  └─ 🗎 readme.md  # This file
 ```
 
