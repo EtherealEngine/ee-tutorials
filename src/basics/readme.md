@@ -1,3 +1,2 @@
-### Ethereal Engine Project
-
-This is an Ethereal Engine project.
+### Ethereal Engine Tutorial: Basics
+This tutorial starts from the code at `ee-tutorial-hello`
