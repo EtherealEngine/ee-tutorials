@@ -6,6 +6,8 @@ import { PrimitiveGeometryComponent } from '@etherealengine/engine/src/scene/com
 import { Vector3 } from 'three'
 import { GeometryTypeEnum } from '@etherealengine/engine/src/scene/constants/GeometryTypeEnum'
 import { PhysicsSystem } from '@etherealengine/spatial'
+import { RigidBodyComponent } from '@etherealengine/spatial/src/physics/components/RigidBodyComponent'
+import { ColliderComponent } from '@etherealengine/spatial/src/physics/components/ColliderComponent'
 
 export const BasicsComponent = ECS.defineComponent({
   name: 'ee.tutorial.BasicsComponent',
@@ -25,8 +27,10 @@ export const BasicsSystem = ECS.defineSystem({
 
       ECS.setComponent(entity, NameComponent, 'ee.tutorial.basics-entity')
       ECS.setComponent(entity, VisibleComponent)
-      ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
+      ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 3, 0) })
       ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: GeometryTypeEnum.SphereGeometry })
+      ECS.setComponent(entity, RigidBodyComponent, { type: 'dynamic' })
+      ECS.setComponent(entity, ColliderComponent, { shape: 'sphere' })
     }
   },
   insert: { after: PhysicsSystem }

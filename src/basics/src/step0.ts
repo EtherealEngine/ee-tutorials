@@ -8,9 +8,9 @@ import { TransformComponent } from '@etherealengine/spatial/src/transform/compon
 import { Vector3 } from 'three'
 
 // Define our component
-const BasicsComponent = ECS.defineComponent({
-  name: 'ee.tutorial.HelloComponent',
-  jsonID: 'ee.tutorial.HelloComponent',
+export const BasicsComponent = ECS.defineComponent({
+  name: 'ee.tutorial.BasicsComponent',
+  jsonID: 'EE_tutorial_basics',
   onInit: () => { return { initialized: false } }
 })
 
@@ -19,12 +19,11 @@ const basicsQuery = ECS.defineQuery([BasicsComponent])
 
 const execute = () => {
   for (const entity of basicsQuery()) {
-    const { initialized } = ECS.getComponent(entity, BasicsComponent)
-    if (initialized) continue
+    let { initialized } = ECS.getMutableComponent(entity, BasicsComponent)
+    if (initialized.value) continue
+    initialized.set(true)
 
-    ECS.getMutableComponent(entity, BasicsComponent).initialized.set(true)
-
-    ECS.setComponent(entity, NameComponent, 'basics-entity')
+    ECS.setComponent(entity, NameComponent, 'ee.tutorial.basics-entity')
     ECS.setComponent(entity, VisibleComponent)
     ECS.setComponent(entity, TransformComponent, { position: new Vector3(0, 1, 0) })
     ECS.setComponent(entity, PrimitiveGeometryComponent, { geometryType: GeometryTypeEnum.SphereGeometry })
@@ -32,11 +31,9 @@ const execute = () => {
 }
 
 // Define our system
-const BasicsSystem = ECS.defineSystem({
+export const BasicsSystem = ECS.defineSystem({
   uuid: 'ee.tutorial.HelloSystem',
   execute: execute,
   insert: { after: PhysicsSystem }
 })
-
-export { BasicsComponent, BasicsSystem }
 
